@@ -139,6 +139,9 @@ namespace WebApplication2.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+
+
+            ViewBag.usersex = new SelectList(new[] { "femminile ", "maschile" });
             return View();
         }
 
@@ -151,7 +154,10 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
+
+                ViewBag.usersex = new SelectList(new[] { "femminile ", "maschile" });
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, usersex=model.usersex };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

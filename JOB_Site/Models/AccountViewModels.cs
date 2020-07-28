@@ -65,13 +65,21 @@ namespace WebApplication2.Models
 
     public class RegisterViewModel
     {
+        //[Required]
+        //[DisplayName("Nome Utente")]
+        //public string Username { get; set; }
+
+      
         [Required]
-        [DisplayName ("Nome Utente")]
-        public string Username { get; set; }
+        public string usersex { get; set; }
+
+        
         [Required]
         [EmailAddress]
         [Display(Name = "Posta elettronica")]
         public string Email { get; set; }
+
+
 
         [Required]
         [StringLength(100, ErrorMessage = "La lunghezza di {0} deve essere di almeno {2} caratteri.", MinimumLength = 6)]

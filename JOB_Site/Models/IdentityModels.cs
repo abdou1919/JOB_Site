@@ -9,6 +9,8 @@ namespace WebApplication2.Models
     // È possibile aggiungere dati del profilo per l'utente aggiungendo altre proprietà alla classe ApplicationUser. Per altre informazioni, vedere https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
+
+        public string usersex { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Tenere presente che il valore di authenticationType deve corrispondere a quello definito in CookieAuthenticationOptions.AuthenticationType
@@ -29,5 +31,9 @@ namespace WebApplication2.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<JOB_Site.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<JOB_Site.Models.Job> Jobs { get; set; }
     }
 }
