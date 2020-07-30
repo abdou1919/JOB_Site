@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using JOB_Site.Models;
 using WebApplication2.Models;
+using System.IO;
 
 namespace JOB_Site.Controllers
 {
@@ -49,13 +50,17 @@ namespace JOB_Site.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,JobTitle,JobContent,JobImage,CategoryId")] Job job)
+        public ActionResult Create(Job job, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                upload.SaveAs(path);
+                job.JobImage = upload.FileName;
                 db.Jobs.Add(job);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);

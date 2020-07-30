@@ -11,8 +11,8 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
+    <tr class="bg-light">
+        <th >
             @Html.DisplayNameFor(model => model.Category.CategoryName)
         </th>
         <th>
@@ -26,6 +26,8 @@
         </th>
         <th></th>
     </tr>
+
+
 
 @foreach (var item in Model) {
     <tr>
@@ -47,6 +49,10 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
+
+
+
+    
 }
 
 </table>
