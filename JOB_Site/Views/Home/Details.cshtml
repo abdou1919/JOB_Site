@@ -42,12 +42,12 @@
         <dd>
             <img src="~/Uploads/@Html.DisplayFor(model=>model.JobImage)"
                  class="img-thumbnail"
-                 style="width:48px;height:48px;"/>
+                 style="width:48px;height:48px;" />
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Apply", "Apply", new { id = Model.Id }, new {@class="btn btn-success" }) |
+    @Html.ActionLink("Back to List", "Index",new {@class="btn btn-success" })
 </p>

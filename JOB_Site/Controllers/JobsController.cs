@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using JOB_Site.Models;
-using WebApplication2.Models;
-using System.IO;
-
-namespace JOB_Site.Controllers
+﻿namespace JOB_Site.Controllers
 {
+    using JOB_Site.Models;
+    using System.Data.Entity;
+    using System.IO;
+    using System.Linq;
+    using System.Net;
+    using System.Web;
+    using System.Web.Mvc;
+    using WebApplication2.Models;
+    
+    
+    
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -88,10 +87,22 @@ namespace JOB_Site.Controllers
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,JobTitle,JobContent,JobImage,CategoryId")] Job job)
+        public ActionResult Edit(Job job, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                string oldpath = Path.Combine(Server.MapPath("~/Uploads"), job.JobImage);
+
+                if (upload != null)
+
+                {
+
+                    System.IO.File.Delete(oldpath);
+                    string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                    upload.SaveAs(path);
+                    job.JobImage = upload.FileName;
+                }
+
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -99,6 +110,9 @@ namespace JOB_Site.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
+
+        //[Authorize(Roles = "Admin")]
+
 
         // GET: Jobs/Delete/5
         public ActionResult Delete(int? id)

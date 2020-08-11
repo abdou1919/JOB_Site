@@ -50,7 +50,7 @@ namespace WebApplication2.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Posta elettronica")]
+        [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -65,28 +65,31 @@ namespace WebApplication2.Models
 
     public class RegisterViewModel
     {
+
+
         //[Required]
         //[DisplayName("Nome Utente")]
-        //public string Username { get; set; }
+        //public string UserName { get; set; }
 
-      
+
         [Required]
-        public string usersex { get; set; }
 
-        
+        [Display(Name = "Tipo")]
+        public string Tipo { get; set; }
+
+        [Required]
+
+        [Display(Name = "Sesso")]
+        public string usersex { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Posta elettronica")]
         public string Email { get; set; }
-
-
-
         [Required]
         [StringLength(100, ErrorMessage = "La lunghezza di {0} deve essere di almeno {2} caratteri.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
         [DataType(DataType.Password)]
         [Display(Name = "Conferma password")]
         [Compare("Password", ErrorMessage = "La password e la password di conferma non corrispondono.")]

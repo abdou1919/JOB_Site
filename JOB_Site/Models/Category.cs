@@ -18,7 +18,7 @@ namespace JOB_Site.Models
         [DisplayName("Discrezione")]
         public string CategoryDescription{ get; set; }
 
-        public ICollection<Job> Jobs { get; set; }
+        public virtual ICollection<Job> Jobs { get; set; }
 
 
     }

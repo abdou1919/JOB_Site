@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -17,9 +18,10 @@ namespace WebApplication2.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext db;
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -139,9 +141,9 @@ namespace WebApplication2.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-
-
             ViewBag.usersex = new SelectList(new[] { "femminile ", "maschile" });
+           
+            ViewBag.Tipo = new SelectList(db.Roles,"Name","Name");
             return View();
         }
 
@@ -154,21 +156,23 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 ViewBag.usersex = new SelectList(new[] { "femminile ", "maschile" });
+                
+                ViewBag.Tipo = new SelectList(db.Roles, "Name", "Name");
+               
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, usersex=model.usersex };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, usersex=model.usersex,Tipo=model.Tipo };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // Per altre informazioni su come abilitare la conferma dell'account e la reimpostazione della password, vedere https://go.microsoft.com/fwlink/?LinkID=320771
                     // Inviare un messaggio di posta elettronica con questo collegamento
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
-
+                    await UserManager.AddToRoleAsync(user.Id, model.Tipo);  
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

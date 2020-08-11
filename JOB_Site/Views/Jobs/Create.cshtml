@@ -35,7 +35,7 @@
             @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-               <input type="file" name ="upload"/>
+               <input type="file" name ="upload" required/>
 
                 @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
             </div>

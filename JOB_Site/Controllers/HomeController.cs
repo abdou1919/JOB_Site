@@ -3,14 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+           
+            return View(db.Categories.ToList());
+        }
+
+
+        public ActionResult Details(int id)
+
+        {
+            var job = db.Jobs.Find(id);
+
+            if (job == null)
+            {
+                return HttpNotFound();
+
+
+            }
+
+            return View(job);
+
+
         }
 
         public ActionResult About()
