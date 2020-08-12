@@ -36,5 +36,8 @@ namespace WebApplication2.Models
         public System.Data.Entity.DbSet<JOB_Site.Models.Category> Categories { get; set; }
 
         public System.Data.Entity.DbSet<JOB_Site.Models.Job> Jobs { get; set; }
+
+        public System.Data.Entity.DbSet<JOB_Site.Models.ApplyForJob> ApplyForJobs { get; set; }
+
     }
 }

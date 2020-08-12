@@ -303,8 +303,13 @@
     <Compile Include="Migrations\202008101607362_Tipo_Role_1.Designer.cs">
       <DependentUpon>202008101607362_Tipo_Role_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008111314334_Apply_For_Job.cs" />
+    <Compile Include="Migrations\202008111314334_Apply_For_Job.Designer.cs">
+      <DependentUpon>202008111314334_Apply_For_Job.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplyForJob.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
@@ -357,6 +362,7 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Apply.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -392,6 +398,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008101607362_Tipo_Role_1.resx">
       <DependentUpon>202008101607362_Tipo_Role_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008111314334_Apply_For_Job.resx">
+      <DependentUpon>202008111314334_Apply_For_Job.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
