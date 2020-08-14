@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using WebApplication2.Models;
 
 namespace JOB_Site.Models
 {
@@ -21,8 +22,13 @@ namespace JOB_Site.Models
         public string JobImage { get; set; }
 
         public int CategoryId { get; set; }
-       
-        public virtual  Category Category { get; set; }
 
+        public string UserId { get; set; }
+
+
+        public virtual  Category Category { get; set; }
+        public  virtual ApplicationUser User { get; set; }
+
+       
     }
 }

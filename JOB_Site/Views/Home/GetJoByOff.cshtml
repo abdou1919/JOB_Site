@@ -1,0 +1,72 @@
+﻿@model IEnumerable<JOB_Site.Models.JobsViewModel>
+
+@foreach (var item in Model)
+{
+    @item.JobTitele
+    <table border=1 class="form-group">
+
+        <tr>
+            <th>Nome Candidato</th>
+            <th>Messaggio</th>
+            <th>Data</th>
+        </tr>
+        @foreach (var item1 in item.Items)
+        {
+    <tr>
+        <td>@item1.user.UserName</td>
+        <td>@item1.Message</td>
+        <td>@item1.ApplyDate</td>
+    </tr>
+        }
+    </table>
+
+}
+
+
+
+
+
+@*@{
+    ViewBag.Title = "GetJoByOff";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>GetJoByOff</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.UserName)
+        </td>
+        
+    </tr>
+}
+
+</table>*@

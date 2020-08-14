@@ -42,6 +42,9 @@ namespace WebApplication2.Controllers
             }
         }
 
+
+        
+
         public ApplicationUserManager UserManager
         {
             get
@@ -54,6 +57,8 @@ namespace WebApplication2.Controllers
             }
         }
 
+        
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -61,6 +66,14 @@ namespace WebApplication2.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+
+        [Authorize(Roles ="Admin")]
+        public ActionResult GetAllUser()
+        {
+
+            var users = db.Users.ToList();
+            return View(users);
         }
 
         //

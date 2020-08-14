@@ -1,6 +1,7 @@
 ﻿namespace JOB_Site.Controllers
 {
     using JOB_Site.Models;
+    using Microsoft.AspNet.Identity;
     using System.Data.Entity;
     using System.IO;
     using System.Linq;
@@ -56,6 +57,7 @@
                 string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
                 upload.SaveAs(path);
                 job.JobImage = upload.FileName;
+                job.UserId = User.Identity.GetUserId();
                 db.Jobs.Add(job);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -101,8 +103,10 @@
                     string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
                     upload.SaveAs(path);
                     job.JobImage = upload.FileName;
-                }
 
+                }
+                
+                job.UserId = User.Identity.GetUserId();
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -1,0 +1,86 @@
+﻿@model IEnumerable<JOB_Site.Models.Job>
+
+@{
+    ViewBag.Title = "GetAllJobByOff";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>GetAllJobByOff</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create","Jobs")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobContent)
+        </td>
+        <td>
+            <img src="~/Uploads/@Html.DisplayFor(model=>item.JobImage)"
+                 class="img-thumbnail"
+                 style="width:48px;height:48px;" />
+            
+        </td>
+        <td>
+
+                            @Html.ActionLink(
+                    linkText: "Edit",
+                    actionName: "Edit",
+                    controllerName: "Jobs",
+                    routeValues: new
+                         {
+                        id = item.Id
+                         },
+                    htmlAttributes: null
+                )|
+                            
+                            @Html.ActionLink(
+                  linkText: "Details",
+                  actionName: "Details",
+                  controllerName: "Jobs",
+                  routeValues: new
+                       {
+                      id = item.Id
+                       },
+                  htmlAttributes: null
+                )|
+
+
+
+
+
+
+        </td>
+    </tr>
+}
+
+</table>
